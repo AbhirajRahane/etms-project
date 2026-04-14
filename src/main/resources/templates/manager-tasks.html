@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Tasks</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Tasks</h1>
+
+<a th:href="@{/manager/tasks/create}">Create New Task</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Assigned To</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.title}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.assignedTo != null ? task.assignedTo.email : 'Unassigned'}"></td>
+        <td th:text="${task.status}"></td>
+        <td>
+            <a th:href="@{'/manager/tasks/edit/' + ${task.id}}">Edit</a> |
+            <a th:href="@{'/manager/tasks/delete/' + ${task.id}}"
+               onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<div>
+    <a th:href="@{/manager/dashboard}">Back to Dashboard</a>
+</div>
+</body>
+</html>

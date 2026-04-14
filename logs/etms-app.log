@@ -1,0 +1,67 @@
+2026-04-14 09:33:40 [INFO] c.c.e.EtmsApplication - Starting EtmsApplication using Java 17.0.12 with PID 11100 (C:\Users\Lenovo\eclipse-workspace\etms\target\classes started by Lenovo in C:\Users\Lenovo\eclipse-workspace\etms)
+2026-04-14 09:33:40 [DEBUG] c.c.e.EtmsApplication - Running with Spring Boot v3.5.14-SNAPSHOT, Spring v6.2.18-SNAPSHOT
+2026-04-14 09:33:40 [INFO] c.c.e.EtmsApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-14 09:33:41 [INFO] o.a.c.c.StandardService - Starting service [Tomcat]
+2026-04-14 09:33:41 [INFO] o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-04-14 09:33:41 [INFO] o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+2026-04-14 09:33:41 [INFO] o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-14 09:33:41 [INFO] o.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.48.Final
+2026-04-14 09:33:41 [INFO] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-04-14 09:33:41 [INFO] c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2026-04-14 09:33:41 [INFO] c.z.h.p.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d512c1
+2026-04-14 09:33:41 [INFO] c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-14 09:33:41 [INFO] o.h.o.c.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-14 09:33:42 [INFO] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-14 09:33:42 [WARN] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-14 09:33:42 [WARN] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-04-14 09:33:42 [INFO] c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-14 09:33:42 [INFO] c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-14 09:33:42 [ERROR] o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-04-14 09:33:56 [INFO] c.c.e.EtmsApplication - Starting EtmsApplication using Java 17.0.12 with PID 11204 (C:\Users\Lenovo\eclipse-workspace\etms\target\classes started by Lenovo in C:\Users\Lenovo\eclipse-workspace\etms)
+2026-04-14 09:33:56 [DEBUG] c.c.e.EtmsApplication - Running with Spring Boot v3.5.14-SNAPSHOT, Spring v6.2.18-SNAPSHOT
+2026-04-14 09:33:56 [INFO] c.c.e.EtmsApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-14 09:33:57 [INFO] o.a.c.c.StandardService - Starting service [Tomcat]
+2026-04-14 09:33:57 [INFO] o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-04-14 09:33:57 [INFO] o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+2026-04-14 09:33:57 [INFO] o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-14 09:33:57 [INFO] o.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.48.Final
+2026-04-14 09:33:57 [INFO] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-04-14 09:33:57 [INFO] c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2026-04-14 09:33:57 [INFO] c.z.h.p.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1ff542a3
+2026-04-14 09:33:57 [INFO] c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-14 09:33:57 [INFO] o.h.o.c.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-14 09:33:58 [INFO] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-14 09:33:58 [WARN] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-14 09:33:58 [INFO] c.c.e.EtmsApplication - Started EtmsApplication in 2.563 seconds (process running for 2.867)
+2026-04-14 09:34:10 [INFO] o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-14 09:34:10 [INFO] c.c.e.c.AuthController - Login page accessed
+2026-04-14 09:34:10 [INFO] c.c.e.c.AuthController - Login page accessed
+2026-04-14 09:34:58 [INFO] c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-14 09:34:58 [INFO] c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasks - ETMS</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .card p {
+            margin: 5px 0;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .status-pending { background: orange; }
+        .status-progress { background: #2563eb; }
+        .status-completed { background: green; }
+
+        select {
+            margin-top: 5px;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .toast-success { background: green; }
+        .toast-error { background: red; }
+    </style>
+    <!-- CSRF tokens -->
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+<body>
+
+<div class="navbar">
+    Tasks |
+    <a th:href="@{/dashboard}">Dashboard</a> |
+    <a th:href="@{/logout}">Logout</a>
+</div>
+
+<div class="container">
+    <h2>Task List</h2>
+
+    <div th:each="task : ${tasks}" class="card">
+        <h3 th:text="${task.title}">Task Title</h3>
+        <p th:text="${task.description}">Task Description</p>
+        <p>Status: 
+            <span class="status-badge" 
+                  th:text="${task.status}" 
+                  th:classappend="
+                    ${task.status=='Pending'} ? ' status-pending' :
+                    ${task.status=='In Progress'} ? ' status-progress' :
+                    ${task.status=='Completed'} ? ' status-completed' : ''">
+                Pending
+            </span>
+        </p>
+        <label>Update Status:</label>
+        <select onchange="updateStatus(this, [[${task.id}]])" th:value="${task.status}" data-prev="[[${task.status}]]">
+            <option value="Pending" th:selected="${task.status=='Pending'}">Pending</option>
+            <option value="In Progress" th:selected="${task.status=='In Progress'}">In Progress</option>
+            <option value="Completed" th:selected="${task.status=='Completed'}">Completed</option>
+        </select>
+    </div>
+</div>
+
+<script>
+const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+// Show toast messages
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.className = 'toast ' + (type === 'success' ? 'toast-success' : 'toast-error');
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// Update status via AJAX
+function updateStatus(selectElement, taskId) {
+    const newStatus = selectElement.value;
+
+    fetch(`/employee/tasks/${taskId}/update-status`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ status: newStatus })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showToast('Task updated successfully', 'success');
+
+            // Update badge dynamically
+            const badge = selectElement.parentElement.querySelector('.status-badge');
+            badge.textContent = newStatus;
+            badge.className = 'status-badge ' + 
+                (newStatus === 'Pending' ? 'status-pending' : 
+                 newStatus === 'In Progress' ? 'status-progress' : 
+                 'status-completed');
+
+            selectElement.setAttribute('data-prev', newStatus);
+        } else {
+            showToast(data.message || 'Failed to update task', 'error');
+            selectElement.value = selectElement.getAttribute('data-prev');
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        showToast('Error updating task', 'error');
+        selectElement.value = selectElement.getAttribute('data-prev');
+    });
+}
+</script>
+
+</body>
+</html>

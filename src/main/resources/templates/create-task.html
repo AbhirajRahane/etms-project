@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Task - ETMS</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: #d9534f;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Create New Task</h2>
+
+    <!-- Display error if any -->
+    <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+    </div>
+
+    <form th:action="@{/manager/save-task}" th:object="${task}" method="post">
+
+        <label for="title">Task Title</label>
+        <input type="text" id="title" th:field="*{title}" placeholder="Enter task title" required />
+
+        <label for="description">Task Description</label>
+        <textarea id="description" th:field="*{description}" rows="5" placeholder="Enter task description" required></textarea>
+
+        <label for="userId">Assign to Employee</label>
+        <select id="userId" name="userId" required>
+            <option value="" disabled selected>Select Employee</option>
+            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.email}"></option>
+        </select>
+
+        <label for="status">Task Status</label>
+        <select id="status" th:field="*{status}" required>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+        </select>
+
+        <button type="submit">Save Task</button>
+    </form>
+</div>
+
+</body>
+</html>
